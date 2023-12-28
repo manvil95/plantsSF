@@ -7,6 +7,7 @@ import {
 import { refreshApex } from "@salesforce/apex";
 
 export default class SpeciesList extends LightningElement {
+  // PROPERTIES, GETTERS & SETTERS
   searchText = "";
 
   refreshHandlerID;
@@ -27,9 +28,11 @@ export default class SpeciesList extends LightningElement {
     });
   }
 
+  // WIRE
   @wire(getFilteredSpecies, { searchText: "$searchText" })
   species;
 
+  // METHODS
   handleInputChange(event) {
     const searchText = event.target.value;
     if (searchText.length >= 3 || searchText === "") {

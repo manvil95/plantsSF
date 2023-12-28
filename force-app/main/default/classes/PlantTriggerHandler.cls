@@ -56,12 +56,11 @@ public with sharing class PlantTriggerHandler {
 
 	private static Map<Id, Species__c> preloadRelatedSpecies(Set<Id> specieIds) {
 		System.debug('PlantTriggerHandler preloadRelatedSpecies Start');
-		List<Species__c> species = [
-			SELECT Summer_Watering_Frequency__c, Winter_Watering_Frequency__c
-			FROM Species__c
-			WHERE Id IN :specieIds
-			WITH SECURITY_ENFORCED
-		];
+		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, Winter_Watering_Frequency__c
+									FROM 	Species__c
+									WHERE 	Id IN :specieIds
+									WITH 	USER_MODE];
+									
 		System.debug('PlantTriggerHandler preloadRelatedSpecies End');
 		return new Map<Id, Species__c>(species);
 	}

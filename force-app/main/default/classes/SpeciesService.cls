@@ -2,6 +2,7 @@ public with sharing class SpeciesService {
 
 	@AuraEnabled(cacheable=true)
 	public static List<Species__c> getFilteredSpecies(String searchText) {
+		System.debug('SpeciesService getFilteredSpecies Start');
 		String likeValue = '%' + searchText + '%';
 
 		List<Species__c> species = [SELECT 	Id, 
@@ -15,11 +16,14 @@ public with sharing class SpeciesService {
 									WITH 	USER_MODE
 									ORDER BY Name
 									];
+		System.debug('SpeciesService getFilteredSpecies End');
 		return species;
 	}
-
+	
 	@AuraEnabled(cacheable=true)
 	public static List<Species__c> getSpeciesWithPlants() {
+		System.debug('SpeciesService getSpeciesWithPlants Start');
+		System.debug('SpeciesService getSpeciesWithPlants End');
 		return [SELECT 	Name, 
 						(SELECT Name FROM Plants__r)
 				FROM 	Species__c
@@ -32,6 +36,7 @@ public with sharing class SpeciesService {
 		String 	speciesName,
 		Date 	plantAcquisitionDate
 	) {
+		System.debug('SpeciesService createSpeciesWithPlant Start');
 		// Validar que los parametros no son nulos...
 
 		// Comprobar que la especie no existe ya - SOQL
@@ -60,5 +65,6 @@ public with sharing class SpeciesService {
 		} catch(Exception e) {
 			System.debug(e.getMessage());
 		}
+		System.debug('SpeciesService createSpeciesWithPlant End');
 	}
 }

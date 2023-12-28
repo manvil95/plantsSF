@@ -1,55 +1,60 @@
 @isTest
 private with sharing class SpeciesServiceTest {
-  @isTest
-  static void getFilteredSpecies_searchTextIsAnEmptyString() {
-    // GIVEN
-    Integer speciesCount = 6;
-    List<Species__c> speciesToInsert = new List<Species__c>();
-    for (Integer i = 0; i < speciesCount; i++) {
-      Species__c species = new Species__c(Name = 'Species ' + i);
-      speciesToInsert.add(species);
-    }
-    insert speciesToInsert;
+	@isTest
+	static void getFilteredSpeciesSearchTextIsAnEmptyString() {
+		System.debug('SpeciesServiceTest getFilteredSpeciesSearchTextIsAnEmptyString Start');
+		// GIVEN
+		Integer speciesCount = 6;
+		List<Species__c> speciesToInsert = new List<Species__c>();
+		for (Integer i = 0; i < speciesCount; i++) {
+			Species__c species = new Species__c(Name = 'Species ' + i);
+			speciesToInsert.add(species);
+		}
+		insert speciesToInsert;
 
-    // WHEN
-    List<Species__c> returnedSpecies = SpeciesService.getFilteredSpecies('');
+		// WHEN
+		List<Species__c> returnedSpecies = SpeciesService.getFilteredSpecies('');
 
-    // THEN
-    System.assertEquals(speciesCount, returnedSpecies.size());
-  }
+		// THEN
+		System.assertEquals(speciesCount, returnedSpecies.size(), 'XXXXXXXX');
+		System.debug('SpeciesServiceTest getFilteredSpeciesSearchTextIsAnEmptyString End');
+	}
 
-  @isTest
-  static void getSpeciesWithPlants_returnsPlantsAndSpeciesCorrectly() {
-    // GIVEN
-    new TestDataFactory().createSpecies();
+	@isTest
+	static void getSpeciesWithPlantsReturnsPlantsAndSpeciesCorrectly() {
+		System.debug('SpeciesServiceTest getSpeciesWithPlantsReturnsPlantsAndSpeciesCorrectly Start');
+		// GIVEN
+		new TestDataFactory().createSpecies();
 
-    // WHEN
-    List<Species__c> returnedSpecies = SpeciesService.getSpeciesWithPlants();
+		// WHEN
+		List<Species__c> returnedSpecies = SpeciesService.getSpeciesWithPlants();
 
-    // THEN
-    Assert.areEqual(1, returnedSpecies.size());
-    Assert.areEqual(2, returnedSpecies[0].Plants__r.size());
-  }
+		// THEN
+		Assert.areEqual(1, returnedSpecies.size());
+		Assert.areEqual(2, returnedSpecies[0].Plants__r.size());
+		System.debug('SpeciesServiceTest getSpeciesWithPlantsReturnsPlantsAndSpeciesCorrectly End');
 
-  @isTest
-  static void createSpeciesWithPlant_createsSpeciesAndPlantCorrectly() {
-    // GIVEN
-    String speciesName = 'Species1';
-    Date plantAcquisitionDate = System.today();
+	}
 
-    // WHEN
-    SpeciesService.createSpeciesWithPlant(speciesName, plantAcquisitionDate);
+	@isTest
+	static void createSpeciesWithPlantCreatesSpeciesAndPlantCorrectly() {
+		System.debug('SpeciesServiceTest createSpeciesWithPlantCreatesSpeciesAndPlantCorrectly Start');
+		// GIVEN
+		String speciesName = 'Species1';
+		Date plantAcquisitionDate = System.today();
 
-    // THEN
-    List<Species__c> returnedSpecies = [SELECT Name FROM Species__c];
-    List<Plant__c> returnedPlants = [SELECT Acquisition_Date__c FROM Plant__c];
+		// WHEN
+		SpeciesService.createSpeciesWithPlant(speciesName, plantAcquisitionDate);
 
-    Assert.areEqual(1, returnedSpecies.size());
-    Assert.areEqual(speciesName, returnedSpecies[0].Name);
-    Assert.areEqual(1, returnedPlants.size());
-    Assert.areEqual(
-      plantAcquisitionDate,
-      returnedPlants[0].Acquisition_Date__c
-    );
-  }
+		// THEN
+		List<Species__c> returnedSpecies = [SELECT Name FROM Species__c];
+		List<Plant__c> returnedPlants = [SELECT Acquisition_Date__c FROM Plant__c];
+
+		Assert.areEqual(1, returnedSpecies.size());
+		Assert.areEqual(speciesName, returnedSpecies[0].Name, 'Its');
+		Assert.areEqual(1, returnedPlants.size());
+		Assert.areEqual(plantAcquisitionDate, returnedPlants[0].Acquisition_Date__c);
+		
+		System.debug('SpeciesServiceTest createSpeciesWithPlantCreatesSpeciesAndPlantCorrectly End');
+	}
 }
