@@ -6,7 +6,7 @@
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>PAGE_BACKGROUND_COLOR</propertyName>
-        <propertyValue>#FFF6C4</propertyValue>
+        <propertyValue>#FFFDF2</propertyValue>
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>HEADER_BACKGROUND_COLOR</propertyName>
@@ -44,5 +44,5 @@
         <propertyName>OVERRIDE_LOADING_PAGE</propertyName>
         <propertyValue>false</propertyValue>
     </brandingSetProperty>
-    <masterLabel>PlantsApp</masterLabel>
+    <masterLabel>Plants App</masterLabel>
 </BrandingSet>
