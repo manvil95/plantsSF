@@ -13,10 +13,7 @@ public inherited sharing class FrequencyService {
 
 	static Set<Integer> summerMonths = new Set<Integer>{ 5, 6, 7, 8, 9 };
 
-	public static Integer getWateringDays(
-		Species__c specie,
-		DateService dateServiceInstance
-	) {
+	public static Integer getWateringDays(Species__c specie, DateService dateServiceInstance) {
 		System.debug('FrequencyService getWatering Days Start');
 		Integer month = dateServiceInstance.getCurrentMonth();
 		System.debug('FrequencyService getWatering Days End');
