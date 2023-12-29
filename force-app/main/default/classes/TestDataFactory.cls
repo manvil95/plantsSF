@@ -5,11 +5,13 @@ public with sharing class TestDataFactory {
 
 	public Id createSpecies() {
 		Species__c species = new Species__c(
-			Name 							= 'Species1',
-			Summer_Watering_Frequency__c 	= 'Daily',
-			Winter_Watering_Frequency__c 	= 'Weekly',
-			Max_Temperature__c 				= maxTemperature,
-			Min_Temperature__c 				= minTemperature
+			Name 								= 'Species1',
+			Summer_Watering_Frequency__c 		= 'Daily',
+			Winter_Watering_Frequency__c 		= 'Weekly',
+			Summer_Fertilization_Frequency__c 	= 'Weekly',
+			Winter_Fertilization_Frequency__c 	= 'Weekly',
+			Max_Temperature__c 					= maxTemperature,
+			Min_Temperature__c 					= minTemperature
 		);
 		insert species;
 

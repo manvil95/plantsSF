@@ -5,11 +5,13 @@ private with sharing class PlantTriggerTest {
 		System.debug('PlantTriggerTest insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
 		// GIVEN
 		Species__c poto = new Species__c();
-		poto.Name 							= 'Poto';
-		poto.Winter_Watering_Frequency__c 	= 'Every other week';
-		poto.Summer_Watering_Frequency__c 	= 'Every other week';
+		poto.Name 								= 'Poto';
+		poto.Winter_Watering_Frequency__c 		= 'Every other week';
+		poto.Summer_Watering_Frequency__c 		= 'Every other week';
+		poto.Winter_Fertilization_Frequency__c 	= 'Weekly';
+		poto.Summer_Fertilization_Frequency__c 	= 'Weekly';
 		insert poto;
-
+		
 		Plant__c plant1 = new Plant__c();
 		plant1.Last_Fertilized__c 	= System.today();
 		plant1.Last_Watered__c 		= System.today();
@@ -32,9 +34,11 @@ private with sharing class PlantTriggerTest {
 		System.debug('PlantTriggerTest updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
 		// GIVEN
 		Species__c poto = new Species__c();
-		poto.Name 							= 'Poto';
-		poto.Winter_Watering_Frequency__c 	= 'Every other week';
-		poto.Summer_Watering_Frequency__c 	= 'Every other week';
+		poto.Name 								= 'Poto';
+		poto.Winter_Watering_Frequency__c 		= 'Every other week';
+		poto.Summer_Watering_Frequency__c 		= 'Every other week';
+		poto.Winter_Fertilization_Frequency__c 	= 'Weekly';
+		poto.Summer_Fertilization_Frequency__c 	= 'Weekly';
 		insert poto;
 
 		Plant__c plant1 = new Plant__c();

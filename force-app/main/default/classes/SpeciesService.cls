@@ -46,6 +46,9 @@ public with sharing class SpeciesService {
 		newSpecies.Name 						= speciesName;
 		newSpecies.Summer_Watering_Frequency__c = 'Daily';
 		newSpecies.Winter_Watering_Frequency__c = 'Weekly';
+		// ! Chequear si puede influir en los flujos de creación y demás
+		newSpecies.Summer_Fertilization_Frequency__c = 'Weekly';
+		newSpecies.Winter_Fertilization_Frequency__c = 'Weekly';
 
 		try{
 			System.Database.insert(newSpecies);

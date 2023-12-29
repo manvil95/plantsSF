@@ -24,7 +24,7 @@ public inherited sharing class FrequencyService {
 			return daysByFrequency.get(specie.Winter_Watering_Frequency__c);
 		}
 	}
-	// HAY QUE CHEQUEAR LOS TIEMPOS, SI ES INVIERNO Y DEMÁS. -> POTO COMO EJEMPLO
+
 	public static Integer getFertilizationDays(Species__c specie, DateService dateServiceInstance) {
 		System.debug('FrequencyService getFertilizationDays Start');
 		Integer month = dateServiceInstance.getCurrentMonth();
