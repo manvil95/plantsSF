@@ -24,7 +24,7 @@ public inherited sharing class FrequencyService {
 			return daysByFrequency.get(specie.Winter_Watering_Frequency__c);
 		}
 	}
-
+	// HAY QUE CHEQUEAR LOS TIEMPOS, SI ES INVIERNO Y DEMÁS. -> POTO COMO EJEMPLO
 	public static Integer getFertilizationDays(Species__c specie, DateService dateServiceInstance) {
 		System.debug('FrequencyService getFertilizationDays Start');
 		Integer month = dateServiceInstance.getCurrentMonth();
@@ -33,7 +33,12 @@ public inherited sharing class FrequencyService {
 		if (summerMonths.contains(month)) {
 			return daysByFrequency.get(specie.Summer_Fertilization_Frequency__c);
 		} else {
-			return daysByFrequency.get(specie.Winter_Fertilization_Frequency__c);
+			if(specie.Winter_Fertilization_Frequency__c == 'Not needed' && specie.Summer_Fertilization_Frequency__c != 'Not needed'){
+				return Date.newInstance(Date.today().year(), 6, 21).daysBetween(Date.today());
+			}
+			else{
+				return daysByFrequency.get(specie.Winter_Fertilization_Frequency__c);
+			}
 		}
 	}
 }

@@ -21,7 +21,7 @@ public with sharing class PlantService {
             }
         }
 
-		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, Winter_Watering_Frequency__c
+		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, Winter_Watering_Frequency__c, Summer_Fertilization_Frequency__c, Winter_Fertilization_Frequency__c
 									FROM 	Species__c
 									WHERE 	Id IN :specieIds
 									WITH 	USER_MODE];

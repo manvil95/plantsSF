@@ -16,6 +16,7 @@ public with sharing class PlantTriggerHandler extends TriggerHandler {
 		System.debug('PlantTriggerHandler beforeInsert Start');
 		
 		PlantService.populateNextWateringDate(newPlants, null);
+		PlantService.populateNextFertilizationDate(newPlants, null);
 		
 		System.debug('PlantTriggerHandler beforeInsert End');
 	}
@@ -24,6 +25,7 @@ public with sharing class PlantTriggerHandler extends TriggerHandler {
 		System.debug('PlantTriggerHandler beforeUpdate Start');
 		
 		PlantService.populateNextWateringDate(newPlants, oldPlantMap);
+		PlantService.populateNextFertilizationDate(newPlants, oldPlantMap);
 		
 		System.debug('PlantTriggerHandler beforeUpdate End');
 	}
