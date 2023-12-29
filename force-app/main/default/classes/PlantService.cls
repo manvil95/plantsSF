@@ -12,13 +12,15 @@ public with sharing class PlantService {
                 if (oldPlant.Last_Watered__c != newPlant.Last_Watered__c) {
                     specieIds.add(newPlant.Species__c);
                 }
+                else if (oldPlant.Last_Fertilized__c != newPlant.Last_Fertilized__c) {
+                    specieIds.add(newPlant.Species__c);
+                }
             }
             else {
                     specieIds.add(newPlant.Species__c);
             }
         }
 
-        // Query precarga objetos relacionados
 		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, Winter_Watering_Frequency__c
 									FROM 	Species__c
 									WHERE 	Id IN :specieIds
@@ -60,5 +62,31 @@ public with sharing class PlantService {
         }  
 		
         System.debug('PlantService populateNextWateringDate End');
+	}
+
+    public static void populateNextFertilizationDate(List<Plant__c> newPlants, Map<Id,Plant__c> oldPlantMap) {
+		System.debug('PlantService populateNextFertilizationDate Start');
+        
+        Map<Id, Species__c> speciesById = preloadRelatedSpecies(newPlants, oldPlantMap);
+
+        // Prepopulate Next Watering Date
+        for (Plant__c newPlant : newPlants) {
+            
+            Id specieId             = newPlant.Species__c;
+            Species__c specie       = speciesById.get(specieId); // BIEN!!!
+            Integer daysToAdd       = FrequencyService.getFertilizationDays(specie, new DateService());
+            
+            if(oldPlantMap != null) {
+                Plant__c oldPlant = oldPlantMap.get(newPlant.Id);
+                if (oldPlant.Last_Fertilized__c != newPlant.Last_Fertilized__c) {
+                    newPlant.Next_Fertilization__c  = newPlant.Last_Fertilized__c.addDays(daysToAdd);
+                }
+            }
+            else {
+                newPlant.Next_Fertilization__c  = newPlant.Last_Fertilized__c.addDays(daysToAdd);
+            }
+        }  
+		
+        System.debug('PlantService populateNextFertilizationDate End');
 	}
 }

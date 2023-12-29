@@ -24,4 +24,16 @@ public inherited sharing class FrequencyService {
 			return daysByFrequency.get(specie.Winter_Watering_Frequency__c);
 		}
 	}
+
+	public static Integer getFertilizationDays(Species__c specie, DateService dateServiceInstance) {
+		System.debug('FrequencyService getFertilizationDays Start');
+		Integer month = dateServiceInstance.getCurrentMonth();
+		System.debug('FrequencyService getFertilizationDays End');
+		
+		if (summerMonths.contains(month)) {
+			return daysByFrequency.get(specie.Summer_Fertilization_Frequency__c);
+		} else {
+			return daysByFrequency.get(specie.Winter_Fertilization_Frequency__c);
+		}
+	}
 }
