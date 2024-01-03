@@ -1,5 +1,19 @@
+/***************************************************************************************************
+* Author		: Manu Villen
+* Created      	: 30/12/2023
+* ModifiedBy 	 
+* Version      	: 1.0
+* Description	: Clase para gestionar todos los procesos pertenecientes al Custom Object Plant__c.
+***************************************************************************************************/
 public with sharing class PlantService {
 
+    /***************************************************************************************************
+    * Author		: Manu Villen
+    * Created      	: 30/12/2023
+    * ModifiedBy 	 
+    * Version      	: 1.0
+    * Description	: Método para precargar las especies relacioandas con las plantas de los parámetros.
+    ***************************************************************************************************/
     public static Map<Id, Species__c> preloadRelatedSpecies(List<Plant__c> newPlants, Map<Id, Plant__c> oldPlantMap) {
 		System.debug('PlantService preloadRelatedSpecies Start');
         // Precargar información necesaria de objetos relacionados
@@ -17,7 +31,7 @@ public with sharing class PlantService {
                 }
             }
             else {
-                    specieIds.add(newPlant.Species__c);
+                specieIds.add(newPlant.Species__c);
             }
         }
 

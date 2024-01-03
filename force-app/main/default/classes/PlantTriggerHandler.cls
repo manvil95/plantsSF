@@ -1,3 +1,10 @@
+/** ────────────────────────────────────────────────────────────────────────────────────────────────
+* Author		: Manu Villen
+* Created      	: 30/12/2023
+* ModifiedBy 	 
+* Version      	: 1.0
+* Description	: Clase Handler para PlantTrigger que extiende TriggerHandler.
+* ────────────────────────────────────────────────────────────────────────────────────────────────*/
 public with sharing class PlantTriggerHandler extends TriggerHandler {
 
 	private List<Plant__c> 		oldPlants;
@@ -15,8 +22,8 @@ public with sharing class PlantTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
 		System.debug('PlantTriggerHandler beforeInsert Start');
 		
-		PlantService.populateNextWateringDate(newPlants, null);
-		PlantService.populateNextFertilizationDate(newPlants, null);
+		PlantService.populateNextWateringDate(this.newPlants, null);
+		PlantService.populateNextFertilizationDate(this.newPlants, null);
 		
 		System.debug('PlantTriggerHandler beforeInsert End');
 	}
@@ -24,8 +31,8 @@ public with sharing class PlantTriggerHandler extends TriggerHandler {
 	public override void beforeUpdate() {
 		System.debug('PlantTriggerHandler beforeUpdate Start');
 		
-		PlantService.populateNextWateringDate(newPlants, oldPlantMap);
-		PlantService.populateNextFertilizationDate(newPlants, oldPlantMap);
+		PlantService.populateNextWateringDate(this.newPlants, this.oldPlantMap);
+		PlantService.populateNextFertilizationDate(this.newPlants, this.oldPlantMap);
 		
 		System.debug('PlantTriggerHandler beforeUpdate End');
 	}
