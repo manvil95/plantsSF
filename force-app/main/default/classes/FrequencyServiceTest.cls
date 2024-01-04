@@ -1,5 +1,19 @@
+/***************************************************************************************************
+@author			: Manu Villen
+@created     	: 30/12/2023
+@modifiedBy 	 
+@version     	: 1.0
+@description	: Clase Test para FrequencyService
+***************************************************************************************************/
 @isTest
 private with sharing class FrequencyServiceTest {
+	/***************************************************************************************************
+	@author			: Alba Rivas
+	@created     	: 2021
+	@modifiedBy 	 
+	@version     	: 1.0
+	@description	: ___Método para testear la frecuencia diaria de regado en invierno___
+	***************************************************************************************************/
 	@isTest
 	static void getWateringDaysWateringFreqDailyAndWinterOneDay() {
 		System.debug('FrequencyServiceTest getWateringDaysWateringFreqDailyAndWinterOneDay Start');
@@ -73,12 +87,12 @@ private with sharing class FrequencyServiceTest {
 		public Integer monthToReturn;
 
 		public Object handleMethodCall(
-		Object stubbedObject,
-		String stubbedMethodName,
-		Type returnType,
-		List<Type> listOfParamTypes,
-		List<String> listOfParamNames,
-		List<Object> listOfArgs
+				Object stubbedObject,
+				String stubbedMethodName,
+				Type returnType,
+				List<Type> listOfParamTypes,
+				List<String> listOfParamNames,
+				List<Object> listOfArgs
 		) {
 			System.debug('FrequencyServiceTest DateServiceMock handleMethodCall Start');
 			// The following debug statements show an example of logging

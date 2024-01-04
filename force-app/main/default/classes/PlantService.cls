@@ -1,18 +1,18 @@
 /***************************************************************************************************
-* Author		: Manu Villen
-* Created      	: 30/12/2023
-* ModifiedBy 	 
-* Version      	: 1.0
-* Description	: Clase para gestionar todos los procesos pertenecientes al Custom Object Plant__c.
+@author		    : Manu Villen
+@created        : 30/12/2023
+@modifiedBy 	 
+@version        : 1.0
+@description	: ___Clase para gestionar todos los procesos pertenecientes al Custom Object Plant__c___
 ***************************************************************************************************/
 public with sharing class PlantService {
 
     /***************************************************************************************************
-    * Author		: Manu Villen
-    * Created      	: 30/12/2023
-    * ModifiedBy 	 
-    * Version      	: 1.0
-    * Description	: Método para precargar las especies relacioandas con las plantas de los parámetros.
+    @author		    : Alba Rivas
+    @created        : Manu Villen 	 
+    @modifiedBy     : 30/12/2023
+    @version        : 1.0
+    @description	: ___Método para precargar las especies relacionadas con las plantas de los parámetros___
     ***************************************************************************************************/
     public static Map<Id, Species__c> preloadRelatedSpecies(List<Plant__c> newPlants, Map<Id, Plant__c> oldPlantMap) {
 		System.debug('PlantService preloadRelatedSpecies Start');
@@ -35,7 +35,10 @@ public with sharing class PlantService {
             }
         }
 
-		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, Winter_Watering_Frequency__c, Summer_Fertilization_Frequency__c, Winter_Fertilization_Frequency__c
+		List<Species__c> species = [SELECT 	Summer_Watering_Frequency__c, 
+                                            Winter_Watering_Frequency__c, 
+                                            Summer_Fertilization_Frequency__c, 
+                                            Winter_Fertilization_Frequency__c
 									FROM 	Species__c
 									WHERE 	Id IN :specieIds
 									WITH 	USER_MODE];

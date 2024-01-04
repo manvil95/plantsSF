@@ -1,3 +1,10 @@
+/***************************************************************************************************
+@author			: Alba Rivas
+@created     	: 2021
+@modifiedBy 	 
+@version     	: 1.0
+@description	: ___Clase para gestionar la frecuencia de regado y fertilización de las plantas___
+***************************************************************************************************/
 public inherited sharing class FrequencyService {
 	static Map<String, Integer> daysByFrequency = new Map<String, Integer>();
 
@@ -13,6 +20,13 @@ public inherited sharing class FrequencyService {
 
 	static Set<Integer> summerMonths = new Set<Integer>{ 5, 6, 7, 8, 9 };
 
+	/***************************************************************************************************
+	@author			: Alba Rivas
+	@created     	: 2021
+	@modifiedBy 	 
+	@version     	: 1.0
+	@description	: ___Método que devuelve la frecuencia en días de regadío___
+	***************************************************************************************************/
 	public static Integer getWateringDays(Species__c specie, DateService dateServiceInstance) {
 		System.debug('FrequencyService getWatering Days Start');
 		Integer month = dateServiceInstance.getCurrentMonth();
@@ -24,7 +38,13 @@ public inherited sharing class FrequencyService {
 			return daysByFrequency.get(specie.Winter_Watering_Frequency__c);
 		}
 	}
-
+	/***************************************************************************************************
+	@author			: Manu Villen
+	@created     	: 30/12/2023
+	@modifiedBy 	 
+	@version     	: 1.0
+	@description	: ___Método que devuelve la frecuencia en días de fertilización___
+	***************************************************************************************************/
 	public static Integer getFertilizationDays(Species__c specie, DateService dateServiceInstance) {
 		System.debug('FrequencyService getFertilizationDays Start');
 		Integer month = dateServiceInstance.getCurrentMonth();
