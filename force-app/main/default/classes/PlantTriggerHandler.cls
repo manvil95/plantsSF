@@ -1,9 +1,9 @@
 /** ────────────────────────────────────────────────────────────────────────────────────────────────
-* Author		: Manu Villen
-* Created      	: 30/12/2023
-* ModifiedBy 	 
-* Version      	: 1.0
-* Description	: Clase Handler para PlantTrigger que extiende TriggerHandler.
+@author		: Manu Villen
+@created      	: 30/12/2023
+@modifiedBy 	 
+@version      	: 1.0
+@description	: Clase Handler para PlantTrigger que extiende TriggerHandler.
 * ────────────────────────────────────────────────────────────────────────────────────────────────*/
 public with sharing class PlantTriggerHandler extends TriggerHandler {
 

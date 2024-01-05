@@ -10,13 +10,16 @@ private with sharing class SpeciesServiceTest {
 			Species__c species = new Species__c(Name = 'Species ' + i);
 			speciesToInsert.add(species);
 		}
+
 		insert speciesToInsert;
 
 		// WHEN
+		Test.startTest();
 		List<Species__c> returnedSpecies = SpeciesService.getFilteredSpecies('');
+		Test.stopTest();
 
 		// THEN
-		System.assertEquals(speciesCount, returnedSpecies.size(), 'XXXXXXXX');
+		System.assertEquals(speciesCount, returnedSpecies.size(), 'The expected size is 6');
 		System.debug('SpeciesServiceTest getFilteredSpeciesSearchTextIsAnEmptyString End');
 	}
 
@@ -27,7 +30,9 @@ private with sharing class SpeciesServiceTest {
 		new TestDataFactory().createSpecies();
 
 		// WHEN
+		Test.startTest();
 		List<Species__c> returnedSpecies = SpeciesService.getSpeciesWithPlants();
+		Test.stopTest();
 
 		// THEN
 		Assert.areEqual(1, returnedSpecies.size());
@@ -44,8 +49,9 @@ private with sharing class SpeciesServiceTest {
 		Date plantAcquisitionDate = System.today();
 
 		// WHEN
+		Test.startTest();
 		SpeciesService.createSpeciesWithPlant(speciesName, plantAcquisitionDate);
-
+		Test.stopTest();
 		// THEN
 		List<Species__c> returnedSpecies = [SELECT Name FROM Species__c];
 		List<Plant__c> returnedPlants = [SELECT Acquisition_Date__c FROM Plant__c];

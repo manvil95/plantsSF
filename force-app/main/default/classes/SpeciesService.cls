@@ -1,3 +1,10 @@
+/***************************************************************************************************
+@author		    : Alba Rivas
+@created        : 2021
+@modifiedBy 	: Manu Villen
+@version        : 2.0
+@description	: ___Clase para gestionar todos los procesos pertenecientes al Custom Object Species__c___
+***************************************************************************************************/
 public with sharing class SpeciesService {
 
 	@AuraEnabled(cacheable=true)
@@ -42,13 +49,15 @@ public with sharing class SpeciesService {
 		// Comprobar que la especie no existe ya - SOQL
 
 		// Crear species rellenando sus campos obligatorios
-		Species__c newSpecies 					= new Species__c();
-		newSpecies.Name 						= speciesName;
-		newSpecies.Summer_Watering_Frequency__c = 'Daily';
-		newSpecies.Winter_Watering_Frequency__c = 'Weekly';
-		// ! Chequear si puede influir en los flujos de creación y demás
-		newSpecies.Summer_Fertilization_Frequency__c = 'Weekly';
-		newSpecies.Winter_Fertilization_Frequency__c = 'Weekly';
+		Species__c newSpecies = new Species__c(
+
+			Name 						= speciesName,
+			Summer_Watering_Frequency__c = 'Daily',
+			Winter_Watering_Frequency__c = 'Weekly',
+			// ! Chequear si puede influir en los flujos de creación y demás
+			Summer_Fertilization_Frequency__c = 'Weekly',
+			Winter_Fertilization_Frequency__c = 'Weekly'
+		);
 
 		try{
 			System.Database.insert(newSpecies);
@@ -57,11 +66,12 @@ public with sharing class SpeciesService {
 		}
 
 		// Crear planta, asociada con esa especie
-		Plant__c newPlant 				= new Plant__c();
-		newPlant.Acquisition_Date__c 	= plantAcquisitionDate;
-		newPlant.Species__c 			= newSpecies.Id;
-		newPlant.Last_Watered__c 		= System.today();
-		newPlant.Last_Fertilized__c 	= System.today();
+		Plant__c newPlant = new Plant__c(
+			Acquisition_Date__c = plantAcquisitionDate,
+			Species__c 			= newSpecies.Id,
+			Last_Watered__c 	= System.today(),
+			Last_Fertilized__c 	= System.today()
+		);
 		
 		try{
 			System.Database.insert(newPlant);

@@ -70,10 +70,10 @@ public inherited sharing class ForecastService {
 	}
 
 	private static void setNotificationMessage(
-		Messaging.CustomNotification 	notification,
-		Integer 						maxTempToday,
-		Integer 						minTempToday,
-		Plant__c 						plant
+			Messaging.CustomNotification 	notification,
+			Integer 						maxTempToday,
+			Integer 						minTempToday,
+			Plant__c 						plant
 	) {
 		System.debug('ForecastService setNoficationMessage Start');
 		// Set the contents for the notification
