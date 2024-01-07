@@ -1,8 +1,15 @@
+/***************************************************************************************************
+@author		    : Alba Rivas
+@created        : 2021
+@modifiedBy 	: Manu Villen
+@version        : 2.0
+@description	: ___Clase test para testear la clase PlantService___
+***************************************************************************************************/
 @isTest
-private with sharing class PlantTriggerTest {
+private with sharing class PlantServiceTest {
 	@isTest
 	static void insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly() {
-		System.debug('PlantTriggerTest insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
+		System.debug('PlantServiceTest insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
 		// GIVEN
 		Species__c poto = new Species__c();
 		poto.Name 								= 'Poto';
@@ -26,12 +33,12 @@ private with sharing class PlantTriggerTest {
 		plant1 = [SELECT Next_Water__c FROM Plant__c WHERE Id = :plant1.Id];
 		System.assertEquals(System.today() + 15, plant1.Next_Water__c, 'The expected date is today + 15 days');
 
-		System.debug('PlantTriggerTest insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly End');
+		System.debug('PlantServiceTest insertPlantLastWateredSetupNextWateringDateCalculatedCorrectly End');
 	}
 
 	@isTest
 	static void updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly() {
-		System.debug('PlantTriggerTest updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
+		System.debug('PlantServiceTest updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly Start');
 		// GIVEN
 		Species__c poto = new Species__c();
 		poto.Name 								= 'Poto';
@@ -61,6 +68,6 @@ private with sharing class PlantTriggerTest {
 		// THEN
 		plant1 = [SELECT Next_Water__c FROM Plant__c WHERE Id = :plant1.Id];
 		System.assertEquals(System.today() + 15, plant1.Next_Water__c, 'The expected date is today + 15 days');
-		System.debug('PlantTriggerTest updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly End');
+		System.debug('PlantServiceTest updatePlantLastWateredSetupNextWateringDateCalculatedCorrectly End');
 	}
 }

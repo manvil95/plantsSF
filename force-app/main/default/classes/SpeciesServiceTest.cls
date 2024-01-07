@@ -1,5 +1,20 @@
+/***************************************************************************************************
+@author		    : Alba Rivas
+@created        : 2021
+@modifiedBy 	: Manu Villen
+@version        : 2.0
+@description	: ___Clase test para testear la clase SpeciesService___
+***************************************************************************************************/
 @isTest
 private with sharing class SpeciesServiceTest {
+
+	/***************************************************************************************************
+	@author		    : Alba Rivas
+	@created        : 2021
+	@modifiedBy 	: Manu Villen
+	@version        : 2.0
+	@description	: ___Método test para el método getFilteredSpecies con un parámetro de entrada vacío___
+	***************************************************************************************************/
 	@isTest
 	static void getFilteredSpeciesSearchTextIsAnEmptyString() {
 		System.debug('SpeciesServiceTest getFilteredSpeciesSearchTextIsAnEmptyString Start');
@@ -35,8 +50,8 @@ private with sharing class SpeciesServiceTest {
 		Test.stopTest();
 
 		// THEN
-		Assert.areEqual(1, returnedSpecies.size());
-		Assert.areEqual(2, returnedSpecies[0].Plants__r.size());
+		Assert.areEqual(1, returnedSpecies.size(), 'El size esperado de returnedSpecies es 1');
+		Assert.areEqual(2, returnedSpecies[0].Plants__r.size(), 'El size esperado de Plant__r es 2');
 		System.debug('SpeciesServiceTest getSpeciesWithPlantsReturnsPlantsAndSpeciesCorrectly End');
 
 	}
@@ -56,10 +71,10 @@ private with sharing class SpeciesServiceTest {
 		List<Species__c> returnedSpecies = [SELECT Name FROM Species__c];
 		List<Plant__c> returnedPlants = [SELECT Acquisition_Date__c FROM Plant__c];
 
-		Assert.areEqual(1, returnedSpecies.size());
-		Assert.areEqual(speciesName, returnedSpecies[0].Name, 'Its');
-		Assert.areEqual(1, returnedPlants.size());
-		Assert.areEqual(plantAcquisitionDate, returnedPlants[0].Acquisition_Date__c);
+		Assert.areEqual(1, returnedSpecies.size(), 'El size esperado de returnedSpecies es 1');
+		Assert.areEqual(speciesName, returnedSpecies[0].Name, 'Se espera el mismo nombre de Specie');
+		Assert.areEqual(1, returnedPlants.size(), 'El size esperado de returnedPlants es 1');
+		Assert.areEqual(plantAcquisitionDate, returnedPlants[0].Acquisition_Date__c, 'La fecha de adquisición esperada es ' + plantAcquisitionDate);
 		
 		System.debug('SpeciesServiceTest createSpeciesWithPlantCreatesSpeciesAndPlantCorrectly End');
 	}

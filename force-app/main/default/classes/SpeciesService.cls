@@ -39,10 +39,7 @@ public with sharing class SpeciesService {
 	}
 
 	@AuraEnabled
-	public static void createSpeciesWithPlant(
-		String 	speciesName,
-		Date 	plantAcquisitionDate
-	) {
+	public static void createSpeciesWithPlant(String speciesName, Date plantAcquisitionDate) {
 		System.debug('SpeciesService createSpeciesWithPlant Start');
 		// Validar que los parametros no son nulos...
 
