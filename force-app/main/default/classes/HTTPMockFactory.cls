@@ -1,15 +1,15 @@
 @isTest
 public class HTTPMockFactory implements HTTPCalloutMock {
 
-    protected Integer code;
-    protected String status;
-    protected String body;
-    protected Map<String, String> responseHeaders;
+    protected Integer              code;
+    protected String               status;
+    protected String               body;
+    protected Map<String, String>  responseHeaders;
     
     public HTTPMockFactory(
-        Integer code,
-        String status,
-        String body,
+        Integer             code,
+        String              status,
+        String              body,
         Map<String, String> responseHeaders
     ) {
         this.code               = code;
@@ -21,7 +21,7 @@ public class HTTPMockFactory implements HTTPCalloutMock {
     public HTTPResponse respond(HTTPRequest req) {
         HttpResponse res = new HttpResponse();
         for (String key : this.responseHeaders.keySet()) {
-        res.setHeader(key, this.responseHeaders.get(key));
+            res.setHeader(key, this.responseHeaders.get(key));
         }
         res.setBody(this.body);
         res.setStatusCode(this.code);

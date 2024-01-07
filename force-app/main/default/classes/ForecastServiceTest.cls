@@ -104,6 +104,6 @@ private with sharing class ForecastServiceTest {
 		Test.stopTest();
 
 		// THEN
-		Assert.areEqual(0, PlatformEventsService.platformEvents.size());
+		Assert.areEqual(0, PlatformEventsService.platformEvents.size(), 'Los eventos esperados son 0');
 	}
 }

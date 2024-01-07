@@ -1,12 +1,18 @@
+/***************************************************************************************************
+@author			: Manu Villen
+@created     	: 30/12/2023
+@modifiedBy 	 
+@version     	: 1.0
+@description	: Clase PlatformEventsService
+***************************************************************************************************/
 public with sharing class PlatformEventsService {
 
 	public static List<Plant_with_Problem__e> platformEvents = new List<Plant_with_Problem__e>();
 	
 	public static void publish(List<Plant_with_Problem__e> plantWithProblemEvents) {
 		System.debug('PlatformEventsService publish Start');
-		List<Database.SaveResult> results = EventBus.publish(
-			plantWithProblemEvents
-		);
+
+		List<Database.SaveResult> results = EventBus.publish(plantWithProblemEvents);
 		platformEvents.addAll(plantWithProblemEvents);
 
 		// Inspect publishing result for each event
@@ -15,9 +21,7 @@ public with sharing class PlatformEventsService {
 				System.debug('Successfully published event.');
 			} else {
 				for (Database.Error err : sr.getErrors()) {
-					System.debug(
-						'Error returned: ' + err.getStatusCode() + ' - ' + err.getMessage()
-					);
+					System.debug('Error returned: ' + err.getStatusCode() + ' - ' + err.getMessage());
 				}
 			}
 		}
