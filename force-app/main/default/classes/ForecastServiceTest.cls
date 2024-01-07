@@ -46,9 +46,9 @@ private with sharing class ForecastServiceTest {
 		Test.stopTest();
 
 		// THEN
-		Assert.areEqual(2, PlatformEventsService.platformEvents.size());
-		Assert.areEqual(PlatformEventsService.platformEvents[0].Tipo_de_Alerta__c, 'frio');
-		Assert.areEqual(PlatformEventsService.platformEvents[1].Tipo_de_Alerta__c, 'frio');
+		Assert.areEqual(2, PlatformEventsService.platformEvents.size(), 'El size de los platformEvents esperado es 2');
+		Assert.areEqual(PlatformEventsService.platformEvents[0].Tipo_de_Alerta__c, 'frio', 'El tipo de alerta esperado es frio');
+		Assert.areEqual(PlatformEventsService.platformEvents[1].Tipo_de_Alerta__c, 'frio', 'El tipo de alerta esperado de frio (2)');
 
 		System.debug('ForecastServiceTest postNotificationsLowTemperatureCorrectPlatformEventPosted End');
 	}
@@ -75,9 +75,9 @@ private with sharing class ForecastServiceTest {
 		Test.stopTest();
 
 		// THEN
-		Assert.areEqual(2, PlatformEventsService.platformEvents.size());
-		Assert.areEqual(PlatformEventsService.platformEvents[0].Tipo_de_Alerta__c, 'calor');
-		Assert.areEqual(PlatformEventsService.platformEvents[1].Tipo_de_Alerta__c, 'calor');
+		Assert.areEqual(2, PlatformEventsService.platformEvents.size(), 'El size platformEvents esperado es 2');
+		Assert.areEqual(PlatformEventsService.platformEvents[0].Tipo_de_Alerta__c, 'calor', 'El tipo de alerta esperado es calor');
+		Assert.areEqual(PlatformEventsService.platformEvents[1].Tipo_de_Alerta__c, 'calor', 'El tipo de alerta esperado es calor(2)');
 
 		System.debug('ForecastServiceTest postNotificationsHighTemperatureCorrectPlatformEventPosted End');
 	}
